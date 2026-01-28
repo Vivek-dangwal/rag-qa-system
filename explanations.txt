@@ -1,0 +1,33 @@
+=====================================================
+MANDATORY EXPLANATIONS - RAG QA SYSTEM
+=====================================================
+
+1. CHUNKING STRATEGY
+--------------------
+- Choice: 500 characters with a 50-character overlap.
+- Reason: Technical hardware documents contain specific definitions. 500 characters 
+  capture enough context (approx. 3-5 sentences) for the LLM to understand a 
+  component. The 50-character overlap ensures that if a technical term or 
+  sentence is cut off at the end of one chunk, it appears fully in the next, 
+  preventing "context loss" during retrieval.
+
+2. RETRIEVAL FAILURE CASE
+-------------------------
+- Observed Case: Querying for "Technical Specifications" (e.g., DPI, voltage, or 
+  interface speeds).
+- Observation: The FAISS vector store successfully retrieved chunks about 
+  "Input Devices," but since the PDF (1.2 Hardware Overview) only listed names, 
+  the LLM correctly stated it could not find technical details.
+- Analysis: This is a "Content-Gap" failure. It proves the system is properly 
+  "Grounded"—it refuses to make up (hallucinate) data that isn't in the 
+  provided text.
+
+3. METRIC TRACKED
+-----------------
+- Metric: sources_used (Retrieval Count / Top-K).
+- Justification: I tracked the number of retrieved chunks sent to the LLM. 
+  By setting K=3, the system balance precision and speed. It provides enough 
+  diversity for the LLM to confirm a fact (or its absence) without 
+  cluttering the prompt with irrelevant noise or increasing API latency.
+
+=====================================================
