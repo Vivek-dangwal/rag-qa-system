@@ -1,7 +1,3 @@
-To make this the perfect README for an AI Engineer Intern role, we need to balance the high-level technical architecture with the "why" behind your choices. This version includes the recent updates like PDF support, Pydantic validation, and rate limiting.
-
-Copy and paste the content below:
-
 Policy QA Assistant: Production-Grade RAG API
 An advanced Retrieval-Augmented Generation (RAG) system built to provide grounded, precise answers from company policy documents. This project transcends a basic script by offering a high-performance FastAPI service powered by Gemini 2.5 Flash and FAISS.
 
@@ -62,3 +58,4 @@ Hybrid Search: Add BM25 keyword matching for specific policy IDs.
 History: Implement Redis-based session management for conversational RAG.
 
 What I am most proud of: The implementation of the asynchronous background pipeline. It demonstrates a "production-first" mindset where user experience (latency) is as important as the AI's accuracy.
+
